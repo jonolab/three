@@ -53,16 +53,16 @@
         <div class="clear"></div>
         <div class="profile-title">
 {{--            <div class="profile-title-name">{{ $userAccount['name'] }}</div>--}}
-            <div class="profile-title-name">files test</div>
+            <div class="profile-title-name">ログイン名</div>
         </div>
         <div class="clear"></div>
     </div>
     <div class="divider"></div>
     <ul class="nav menu">
-        <li class="active"><a href="/dashboard"><em class="fa fa-home">&nbsp;</em> Dashboard</a></li>
-        <li><a href="/feeds"><em class="fas fa-rss">&nbsp;</em> Feeds</a></li>
-        <li><a href="/stories"><em class="fas fa-mobile-alt">&nbsp;</em> Stories</a></li>
-        <li><a href=""><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+        <li class="active"><a href="/master/ingredient"><em class="fa fa-home">&nbsp;</em> 食材マスタ</a></li>
+{{--        <li><a href="/feeds"><em class="fas fa-rss">&nbsp;</em> Feeds</a></li>--}}
+{{--        <li><a href="/stories"><em class="fas fa-mobile-alt">&nbsp;</em> Stories</a></li>--}}
+{{--        <li><a href=""><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>--}}
     </ul>
 
 </div><!--/.sidebar-->
@@ -70,33 +70,42 @@
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
         <ol class="breadcrumb">
-            <li><a href="/dashboard">
-                    <em class="fa fa-home"></em>
-                </a></li>
-            <li class="active">Dashboard</li>
+            <li class="active">食材マスタ</li>
         </ol>
-    </div><!--/.row-->
+    </div>
 
     <div class="panel panel-container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4 main">
 
                 <div class="panel panel-container input-area">
-                    <form name="form-register" action="/master/ingredient/register" method="POST">
-                        @csrf
-                        <input type="hidden" name="id" value="@if(isset($ingredient)){{ $ingredient->id }}@endif">
-                        <div class="col-md-12 margin-top-30">
-                            <label for="name" class="form-label">食材名</label>
-                            <input type="text" class="form-control" id="name" name="name" value="@if(isset($ingredient)){{ $ingredient->name }}@endif">
-                        </div>
-                        <button class="btn btn-primary margin-top-30 margin-bottom-30" onclick="register()">@if(isset($ingredient)) 更新 @else 登録 @endif</button>
-                    </form>
-
+                    <a href="/master/ingredient/register"><button class="btn btn-primary margin-bottom-30">新規登録</button></a>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">食材名</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($ingredients as $ingredient)
+                            <tr>
+                                <td>{{ $ingredient->id }}</td>
+                                <td>{{ $ingredient->name }}</td>
+                                <td><a href="/master/ingredient/register/{{ $ingredient->id }}"><button class="btn btn-link">更新</button></a></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div><!--/.row-->
+        </div>
     </div>
-</div>	<!--/.main-->
+</div>
+
+
+{{--<span id="followers-chart-labels" data-name="{{ $output['followers_chart_labels'] }}"></span>--}}
 
 </body>
 </html>

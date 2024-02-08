@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\IngredientRegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserRegisterConfirmController;
@@ -27,4 +28,7 @@ Route::post('/user-register', [UserRegisterController::class, 'register']);
 Route::get('/user-register/confirm', [UserRegisterConfirmController::class, 'index']);
 Route::post('/user-register/confirm', [UserRegisterConfirmController::class, 'register']);
 
+Route::get('/master/ingredient', [IngredientController::class, 'index']);
 Route::get('/master/ingredient/register', [IngredientRegisterController::class, 'index']);
+Route::get('/master/ingredient/register/{id}', [IngredientRegisterController::class, 'detail']);
+Route::post('/master/ingredient/register', [IngredientRegisterController::class, 'register']);
