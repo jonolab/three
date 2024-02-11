@@ -9,19 +9,18 @@ class User extends Model
 {
     use HasFactory;
 
-    protected $table = 'users';
+    protected $table = 'm_user';
 
     protected $casts = [
         'id' => 'string'
     ];
 
     protected $fillable = [
-        'id',
+        'login_id',
         'sei',
         'mei',
-        'email',
         'password',
-        'is_temporary'
+        'is_admin'
     ];
 
 }

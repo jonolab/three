@@ -4,8 +4,6 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Repositories\IngredientRegisterRepository;
-use App\Repositories\UserRegisterRepository;
-use App\Services\Utils\MailService;
 
 class IngredientRegisterService
 {
@@ -17,7 +15,6 @@ class IngredientRegisterService
     {
         $ingredientRegisterRepository = new IngredientRegisterRepository();
         return $ingredientRegisterRepository->getById($id);
-
     }
 
     public function register(array $requests): void

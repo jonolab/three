@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Repositories\UserRegisterRepository;
-use App\Services\Utils\MailService;
 
 class UserRegisterService
 {
@@ -12,39 +11,35 @@ class UserRegisterService
     {
     }
 
-    public function sendMail(array $requests): void
+    public function getByLoginId(string $login_id): User
     {
-        $user = self::getUserByEmail($requests['email']);
-        $to = $requests['email'];
-        $subject = '会員本登録のお知らせ';
-        $body = "以下リンクを押して、本登録してください。\r\n http://localhost/user-register/confirm?id={$user->id}";
-        $mailService = new MailService();
-        $mailService->sendMail($to, $subject, $body);
+        $userRegisterRepository = new UserRegisterRepository();
+        return $userRegisterRepository->getByLoginId($login_id);
     }
 
     public function register(array $requests): void
     {
-        $insertItems = self::setInsertItems($requests);
+        $insertItems = self::setRegisterItems($requests);
         $userRegisterRepository = new UserRegisterRepository();
-        $userRegisterRepository->userInsert($insertItems);
+        $userRegisterRepository->register($insertItems);
     }
 
-    private function getUserByEmail(string $email): User
+    private function setRegisterItems(array $requests): array
     {
-        $userRegisterRepository = new UserRegisterRepository();
-        return $userRegisterRepository->getUserByEmail($email);
-    }
+        if ($requests['id'] !== null) {
+            $results['id'] = $requests['id'];
+        }
+        if (!isset($requests['login_id'])) {
+            $results['login_id'] = self::generateUserId();
+        } else {
+            $results['login_id'] = $requests['login_id'];
+        }
+        $results['sei'] = $requests['sei'];
+        $results['mei'] = $requests['mei'];
+        $results['is_admin'] = $requests['is_admin'];
+        $results['password'] = self::generatePassword($requests['password']);
 
-    private function setInsertItems(array $requests): array
-    {
-        return [
-            'id' => self::generateUserId(),
-            'sei' => $requests['sei'],
-            'mei' => $requests['mei'],
-            'email' => $requests['email'],
-            'is_temporary' => 1,
-            'password' => self::generatePassword($requests['password']),
-        ];
+        return $results;
     }
 
     private function generateUserId(): string

@@ -1449,3 +1449,7 @@ p.back-link {
     font-size: 1em;
     cursor: pointer;
 }
+
+.center {
+    text-align: center;
+}

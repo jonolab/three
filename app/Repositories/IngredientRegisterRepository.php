@@ -10,15 +10,13 @@ class IngredientRegisterRepository
     {
     }
 
-    public function getById(int $id)
+    public function getById(int $id): Ingredient
     {
-        $ingredient = new Ingredient();
-        return $ingredient::where('id', $id)->first();
+        return Ingredient::where('id', $id)->first();
     }
 
     public function register(array $Items): void
     {
-        $ingredient = new Ingredient();
-        $ingredient::upsert($Items,['id']);
+        Ingredient::upsert($Items,['id']);
     }
 }

@@ -12,7 +12,11 @@ class IngredientRepository
 
     public function search(): \Illuminate\Database\Eloquent\Collection
     {
-        $ingredient = new Ingredient();
-        return $ingredient::all();
+        return Ingredient::whereNull('deleted_at')->get();
+    }
+
+    public function delete(int $id)
+    {
+        Ingredient::where('id', $id)->update(['deleted_at' => date('Y-m-d H:i:s')]);
     }
 }

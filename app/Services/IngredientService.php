@@ -19,4 +19,10 @@ class IngredientService
         $ingredientRepository = new IngredientRepository();
         return $ingredientRepository->search();
     }
+
+    public function delete(int $id): void
+    {
+        $ingredientRepository = new IngredientRepository();
+        $ingredientRepository->delete($id);
+    }
 }

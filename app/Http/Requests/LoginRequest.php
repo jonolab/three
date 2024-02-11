@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class IngredientRegisterRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -14,21 +14,24 @@ class IngredientRegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => [],
-            'name' => 'required',
+            'login_id' => 'required',
+            'password' => 'required',
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => '食材名',
+            'login_id' => 'ログインID',
+            'password' => 'パスワード',
         ];
     }
 
     public function messages() {
         return [
-            'name.required' => ':attributeを入力してください。',
+            'login_id.required' => ':attributeを入力してください。',
+            'password.required' => ':attributeを入力してください。',
         ];
     }
+
 }

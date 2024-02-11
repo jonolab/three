@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\IngredientRegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserRegisterConfirmController;
 use App\Http\Controllers\UserRegisterController;
 use App\Mail\TestMail;
@@ -21,14 +22,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
+//Route::get('/dashboard', [DashboardController::class, 'index']);
+//Route::get('/user-register', [UserRegisterController::class, 'index']);
+//Route::post('/user-register', [UserRegisterController::class, 'register']);
+//Route::get('/user-register/confirm', [UserRegisterConfirmController::class, 'index']);
+//Route::post('/user-register/confirm', [UserRegisterConfirmController::class, 'register']);
+
 Route::get('/login', [LoginController::class, 'index']);
-Route::get('/user-register', [UserRegisterController::class, 'index']);
-Route::post('/user-register', [UserRegisterController::class, 'register']);
-Route::get('/user-register/confirm', [UserRegisterConfirmController::class, 'index']);
-Route::post('/user-register/confirm', [UserRegisterConfirmController::class, 'register']);
+Route::post('/login', [LoginController::class, 'login']);
 
 Route::get('/master/ingredient', [IngredientController::class, 'index']);
+Route::post('/master/ingredient/delete/{id}', [IngredientController::class, 'delete']);
 Route::get('/master/ingredient/register', [IngredientRegisterController::class, 'index']);
 Route::get('/master/ingredient/register/{id}', [IngredientRegisterController::class, 'detail']);
 Route::post('/master/ingredient/register', [IngredientRegisterController::class, 'register']);
+
+Route::get('/master/user', [UserController::class, 'index']);
+Route::get('/master/user/register', [UserRegisterController::class, 'index']);
+Route::get('/master/user/register/{id}', [UserRegisterController::class, 'detail']);
+Route::post('/master/user/register', [UserRegisterController::class, 'register']);

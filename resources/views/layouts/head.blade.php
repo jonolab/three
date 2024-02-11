@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>files</title>
+    <title>three cms</title>
     <link href="{{asset('/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('/css/datepicker3.css')}}" rel="stylesheet">
@@ -23,28 +23,3 @@
     <script src="{{asset('/js/custom.js')}}"></script>
 
 </head>
-
-<script>
-    function register()
-    {
-        document.form-register.submit();
-    }
-
-</script>
-
-<body>
-
-<div class="col-md-4 col-md-offset-4 main">
-
-    <div class="panel panel-container input-area">
-        <form name="form-register" action="/user-register/confirm" method="POST">
-            @csrf
-            <button class="btn btn-primary margin-top-30 margin-bottom-30" onclick="register()">本登録</button>
-            <input type="hidden" name="id" value="{{ $id }}">
-        </form>
-
-    </div>
-</div>	<!--/.main-->
-
-</body>
-</html>

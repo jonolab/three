@@ -10,14 +10,13 @@ class UserRegisterRepository
     {
     }
 
-    public function getUserByEmail(string $email): User
+    public function getByLoginId(string $login_id): User
     {
-        return User::where('email',$email)->first();
+        return User::where('login_id', $login_id)->first();
     }
 
-    public function userInsert(array $insertItems): void
+    public function register(array $Items): void
     {
-        $user = new User();
-        $user->create($insertItems);
+        User::upsert($Items,['id']);
     }
 }
