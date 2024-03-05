@@ -33,5 +33,4 @@ class LoginRequest extends FormRequest
             'password.required' => ':attributeを入力してください。',
         ];
     }
-
 }
