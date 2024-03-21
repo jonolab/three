@@ -19,6 +19,7 @@ class CookingRegisterRequest extends FormRequest
             'ingredient_id_1' => 'required',
             'ingredient_id_2' => [],
             'ingredient_id_3' => [],
+            'is_release' => 'required',
         ];
     }
 
@@ -33,6 +34,7 @@ class CookingRegisterRequest extends FormRequest
     public function messages() {
         return [
             'name.required' => ':attributeを入力してください。',
+            'ingredient_id_1.required' => ':attributeを入力してください。',
         ];
     }
 }

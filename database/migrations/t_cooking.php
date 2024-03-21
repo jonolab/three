@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('ingredient_id_2')->nullable();
             $table->bigInteger('ingredient_id_3')->nullable();
             $table->bigInteger('user_id');
+            $table->tinyInteger('is_release')->default(0);
             $table->timestamps();
         });
     }

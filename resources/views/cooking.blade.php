@@ -32,7 +32,7 @@
                             <th scope="col">食材1</th>
                             <th scope="col">食材2</th>
                             <th scope="col">食材3</th>
-                            <th scope="col"></th>
+                            <th scope="col">公開中</th>
                             <th scope="col"></th>
                         </tr>
                         </thead>
@@ -41,21 +41,14 @@
                             <tr>
                                 <td>{{ $cooking->id }}</td>
                                 <td>{{ $cooking->name }}</td>
-                                <td>{{ $cooking->ingredient_id_1 }}</td>
-                                <td>{{ $cooking->ingredient_id_2 }}</td>
-                                <td>{{ $cooking->ingredient_id_3 }}</td>
+                                <td>{{ $cooking->ingredient_name_1 }}</td>
+                                <td>{{ $cooking->ingredient_name_2 }}</td>
+                                <td>{{ $cooking->ingredient_name_3 }}</td>
+                                <td class="center">@if($cooking->is_release === 1) 〇 @endif</td>
                                 <td>
-                                    <a href="/master/ingredient/register/{{ $cooking->id }}">
+                                    <a href="/cooking/register/{{ $cooking->id }}">
                                         <button class="btn btn-link">更新</button>
                                     </a>
-                                </td>
-                                <td>
-                                    <form action="/master/ingredient/delete/{{ $cooking->id }}" method="POST">
-                                        @csrf
-                                        <a>
-                                            <button type="submit" class="btn btn-link">削除</button>
-                                        </a>
-                                    </form>
                                 </td>
                             </tr>
                         @endforeach

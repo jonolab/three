@@ -39,6 +39,8 @@ Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::get('/cooking', [CookingController::class, 'index']);
 Route::get('/cooking/register', [CookingRegisterController::class, 'index']);
 Route::post('/cooking/register', [CookingRegisterController::class, 'register']);
+Route::get('/cooking/register/{id}', [CookingRegisterController::class, 'detail']);
+
 
 Route::get('/master/ingredient', [IngredientController::class, 'index']);
 Route::post('/master/ingredient/delete/{id}', [IngredientController::class, 'delete']);

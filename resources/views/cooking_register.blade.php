@@ -37,7 +37,7 @@
                             <select class="form-control" type="text" name="ingredient_id_1">
                                 <option value="">食材１ を選択してください</option>
                                 @foreach($ingredients as $ingredient)
-                                    <option value="{{ $ingredient->id }}">{{ $ingredient->name }}</option>
+                                    <option value="{{ $ingredient->id }}" @if(isset($cooking->ingredient_id_1) && $cooking->ingredient_id_1 === $ingredient->id) selected @endif>{{ $ingredient->name }}</option>
                                 @endforeach
                             </select>
                         </label>
@@ -46,7 +46,7 @@
                             <select class="form-control" type="text" name="ingredient_id_2">
                                 <option value="">食材２ を選択してください</option>
                                 @foreach($ingredients as $ingredient)
-                                    <option value="{{ $ingredient->id }}">{{ $ingredient->name }}</option>
+                                    <option value="{{ $ingredient->id }}" @if(isset($cooking->ingredient_id_2) && $cooking->ingredient_id_2 === $ingredient->id) selected @endif>{{ $ingredient->name }}</option>
                                 @endforeach
                             </select>
                         </label>
@@ -55,10 +55,19 @@
                             <select class="form-control" type="text" name="ingredient_id_3">
                                 <option value="">食材３ を選択してください</option>
                                 @foreach($ingredients as $ingredient)
-                                    <option value="{{ $ingredient->id }}">{{ $ingredient->name }}</option>
+                                    <option value="{{ $ingredient->id }}" @if(isset($cooking->ingredient_id_3) && $cooking->ingredient_id_3 === $ingredient->id) selected @endif>{{ $ingredient->name }}</option>
                                 @endforeach
                             </select>
                         </label>
+
+                        <div class="col-md-12 margin-top-30 form-check">
+                            <input name="is_release" type="hidden" value="0">
+                            <input class="form-check-input" type="checkbox" value="1" id="is_release" name="is_release"
+                                   @if(isset($cooking) && $cooking->is_release === 1) checked @endif >
+                            <label class="form-check-label" for="is_release">
+                                公開する
+                            </label>
+                        </div>
 
                         <button class="btn btn-primary margin-top-30 margin-bottom-30" onclick="register()">@if(isset($cooking)) 更新 @else 登録 @endif</button>
                     </form>

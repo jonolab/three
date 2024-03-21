@@ -15,16 +15,10 @@ class CookingService
     {
     }
 
-    public function search(): \Illuminate\Database\Eloquent\Collection
+    public function search(): \Illuminate\Support\Collection
     {
         $loginSessions = session('login');
         $cookingRepository = new CookingRepository();
         return $cookingRepository->search($loginSessions['userId']);
-    }
-
-    public function delete(int $id): void
-    {
-        $ingredientRepository = new IngredientRepository();
-        $ingredientRepository->delete($id);
     }
 }

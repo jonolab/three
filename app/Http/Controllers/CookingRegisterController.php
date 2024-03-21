@@ -19,10 +19,12 @@ class CookingRegisterController extends Controller
 
     public function detail(int $id)
     {
-        $ingredientRegisterService = new IngredientRegisterService();
-        $ingredient = $ingredientRegisterService->getById($id);
+        $ingredientService = new IngredientService();
+        $ingredients = $ingredientService->search();
+        $cookingRegisterService = new CookingRegisterService();
+        $cooking = $cookingRegisterService->getById($id);
 
-        return view('ingredient_register', ['ingredient' => $ingredient]);
+        return view('cooking_register', ['ingredients' => $ingredients,'cooking' => $cooking]);
     }
 
     public function register(CookingRegisterRequest $request)

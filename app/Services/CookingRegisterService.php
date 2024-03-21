@@ -15,6 +15,12 @@ class CookingRegisterService
     {
     }
 
+    public function getById(int $id): \App\Models\Cooking
+    {
+        $cookingRegisterRepository = new CookingRegisterRepository();
+        return $cookingRegisterRepository->getById($id);
+    }
+
     public function register(array $requests): void
     {
         $registerItems = self::setRegisterItems($requests);
@@ -35,6 +41,8 @@ class CookingRegisterService
 
         $loginSessions = session('login');
         $results['user_id'] = $loginSessions['userId'];
+
+        $results['is_release'] = $requests['is_release'];
 
         return $results;
     }
