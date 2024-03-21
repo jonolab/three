@@ -11,7 +11,7 @@ class IngredientRegisterService
     {
     }
 
-    public function getById(int $id)
+    public function getById(int $id): \App\Models\Ingredient
     {
         $ingredientRegisterRepository = new IngredientRegisterRepository();
         return $ingredientRegisterRepository->getById($id);

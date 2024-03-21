@@ -4,21 +4,22 @@ declare(strict_types=1);
 
 namespace App\Repositories;
 
+use App\Models\Cooking;
 use App\Models\Ingredient;
 
-class IngredientRegisterRepository
+class CookingRegisterRepository
 {
     public function __construct()
     {
     }
 
-    public function getById(int $id): Ingredient
+    public function getById(int $id): Cooking
     {
-        return Ingredient::where('id', $id)->first();
+        return Cooking::where('id', $id)->first();
     }
 
     public function register(array $Items): void
     {
-        Ingredient::upsert($Items,['id']);
+        Cooking::upsert($Items,['id']);
     }
 }
