@@ -11,6 +11,9 @@ class LoginController extends Controller
 {
     public function index()
     {
+        if (session('login') !== null) {
+            return redirect('/dashboard');
+        }
         return view('login');
     }
 
@@ -21,6 +24,6 @@ class LoginController extends Controller
         if (!$loginService->login($validated)) {
             return redirect('/login');
         }
-        return redirect('/master/user');
+        return redirect('/dashboard');
     }
 }

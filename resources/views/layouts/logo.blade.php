@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span></button>
-            <a class="navbar-brand header-logo" href="">three cms</a>
+            <a class="navbar-brand header-logo" href="/dashboard">three cms</a>
         </div>
     </div>
 </nav>

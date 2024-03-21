@@ -30,6 +30,12 @@ class LoginService
         }
 
         // sessionに保存
+        session([
+            'login' => [
+                'userId' => $user->id,
+                'loginId' => $user->login_id,
+            ]
+        ]);
 
         return true;
 

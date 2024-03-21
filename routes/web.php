@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\CookingController;
+use App\Http\Controllers\CookingRegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\IngredientRegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserRegisterConfirmController;
 use App\Http\Controllers\UserRegisterController;
@@ -22,7 +25,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/dashboard', [DashboardController::class, 'index']);
 //Route::get('/user-register', [UserRegisterController::class, 'index']);
 //Route::post('/user-register', [UserRegisterController::class, 'register']);
 //Route::get('/user-register/confirm', [UserRegisterConfirmController::class, 'index']);
@@ -30,6 +32,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [LoginController::class, 'index']);
 Route::post('/login', [LoginController::class, 'login']);
+Route::get('/logout', [LogoutController::class, 'logout']);
+
+Route::get('/dashboard', [DashboardController::class, 'index']);
+
+Route::get('/cooking', [CookingController::class, 'index']);
+Route::get('/cooking/register', [CookingRegisterController::class, 'index']);
+Route::post('/cooking/register', [CookingRegisterController::class, 'register']);
 
 Route::get('/master/ingredient', [IngredientController::class, 'index']);
 Route::post('/master/ingredient/delete/{id}', [IngredientController::class, 'delete']);
@@ -41,3 +50,4 @@ Route::get('/master/user', [UserController::class, 'index']);
 Route::get('/master/user/register', [UserRegisterController::class, 'index']);
 Route::get('/master/user/register/{id}', [UserRegisterController::class, 'detail']);
 Route::post('/master/user/register', [UserRegisterController::class, 'register']);
+
